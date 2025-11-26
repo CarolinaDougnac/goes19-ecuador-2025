@@ -11,10 +11,10 @@ El objetivo principal es mostrar mi forma de trabajo integrando:
 
 ## ✨ Objetivos del proyecto
 
-- Identificar y seguir sistemas convectivos relevantes para las operaciones de siembra.
-- Generar secuencias **antes–durante–después** asociadas a vuelos específicos.
-- Superponer trayectorias de vuelo y áreas de interés sobre campos satelitales.
-- Dejar un flujo de trabajo reproducible que pueda adaptarse a otras campañas o regiones.
+- Analizar la evolución temporal de sistemas convectivos.  
+- Generar secuencias **antes–durante–después** de eventos seleccionados.  
+- Integrar trayectorias georreferenciadas con datos satelitales.  
+- Mantener una arquitectura modular mediante scripts en `src/`.
 
 ---
 
@@ -23,19 +23,21 @@ El objetivo principal es mostrar mi forma de trabajo integrando:
 ```text
 .
 ├── data/
-│   ├── raw/          # Datos crudos GOES-19 (no incluidos por tamaño)
-│   └── processed/    # Datos recortados/preprocesados
-├── figures/          # Figuras de ejemplo del análisis
+│   ├── raw/          # Datos crudos GOES-19 (no incluidos)
+│   └── processed/    # Datos preprocesados
+├── figures/          # Figuras de ejemplo
 ├── notebooks/        # Notebooks del flujo de trabajo
-├── src/              # Funciones reutilizables en Python
+├── src/              # Módulos reutilizables en Python
 ├── LICENSE
 ├── README.md
 └── requirements.txt
+```
 
 ---
 
-## 📊 Ejemplo de análisis GOES-19: Evolución convectiva durante el vuelo N° 51
+## 📊 Ejemplo de análisis GOES-19: Evolución convectiva (caso de estudio)
 
+<<<<<<< HEAD
 A continuación se presenta un ejemplo detallado del análisis satelital realizado para el **Vuelo N° 51** en el dominio geográfico de estudio. Se muestra la evolución de la nube convectiva objetivo en tres momentos clave del proceso de siembra: **antes**, **durante** y **después** del vuelo, utilizando imágenes de la banda infrarroja **GOES-19 Band 13 (IR)**.
 
 Estas figuras representan claramente:
@@ -43,104 +45,115 @@ Estas figuras representan claramente:
 - el desplazamiento y desarrollo convectivo del sistema,
 - la ubicación de la trayectoria del avión (ida, siembra, regreso, pausa),
 - y la interacción entre el vuelo y la estructura convectiva.
+=======
+A continuación se muestra la evolución de un sistema convectivo antes, durante y después del evento seleccionado.  
+Las imágenes provienen de la banda infrarroja **GOES-19 B13**, utilizada para identificar núcleos fríos y evaluar desarrollo vertical.
+>>>>>>> def67a1 (Actualizo README y aplico limpieza total del proyecto)
 
 ---
 
-### 🟦 Antes de la siembra — 18:50 UTC  
-**Figura 11**  
-El sistema convectivo comienza a organizarse. Se aprecia un núcleo frío con temperaturas entre −50°C y −60°C, asociado a la fase inicial del desarrollo vertical.
+### 🟦 Antes — 18:50 UTC
 
 ![Figura 11](figures/Fig11_GOES19_B13_20250921_1850.png)
 
+Núcleo convectivo inicial con temperaturas entre −50 °C y −60 °C.
+
 ---
 
-### 🟪 Durante la siembra — 19:40 UTC  
-**Figura 16**  
-El piloto ejecuta el tramo de siembra dentro del núcleo convectivo. Se observa intensificación en el sector suroeste del polígono, con un crecimiento vertical marcado y temperaturas de brillo que alcanzan valores inferiores a −65°C.
+### 🟪 Durante — 19:40 UTC
 
 ![Figura 16](figures/Fig16_GOES19_B13_20250921_1940.png)
 
+Intensificación del sistema con expansión del núcleo frío y mayor desarrollo vertical.
+
 ---
 
-### 🟧 Después de la siembra — 20:30 UTC  
-**Figura 21**  
-La celda convectiva evoluciona y se expande, mostrando una estructura más madura. Continúan las bajas temperaturas de brillo y aparecen nuevos máximos convectivos al este y sureste del dominio.
+### 🟧 Después — 20:30 UTC
 
 ![Figura 21](figures/Fig21_GOES19_B13_20250921_2030.png)
+
+Estructura más madura, con nuevos máximos convectivos y mayor extensión espacial.
 
 ---
 
 ### ✨ Interpretación general
 
-El análisis temporal revela:
+El análisis temporal evidencia:
 
-- un **desarrollo convectivo activo** durante todo el periodo del vuelo,  
-- una **zona óptima de intervención** dentro del núcleo más frío,  
-- y una evolución post-siembra consistente con la intensificación observada en la estructura convectiva.
+- un **aumento progresivo del desarrollo vertical**,  
+- intensificación del sistema convectivo durante el evento,  
+- y expansión del núcleo frío posterior al máximo.
 
-Este tipo de análisis permite evaluar de manera visual y cuantitativa los vuelos de estimulación de nubes, contribuyendo a la documentación técnica y a la toma de decisiones operativas.
-
----
+Este tipo de productos permite evaluar la evolución espacial y temporal de nubes convectivas utilizando datos satelitales y herramientas reproducibles.
 
 ---
 
-## 🔄 Pipeline del proyecto (flujo de trabajo)
+## 🔄 Pipeline del proyecto
 
-Este proyecto sigue un flujo de trabajo ordenado y reproducible que permite analizar eventos de siembra de nubes utilizando imágenes GOES-19.  
-El proceso completo —desde la obtención de los datos hasta la documentación del caso— se resume en el siguiente pipeline:
+### 🛫 1. Selección del evento  
+Definición de ventanas temporales **antes–durante–después**.
 
-### 🛫 1. Selección del evento y ventana temporal  
-Identificación del vuelo de siembra y determinación de los intervalos **antes–durante–después** a analizar.
-
-### 📥 2. Descarga de imágenes GOES-19 (Banda 13)  
-Obtención automática de las escenas satelitales correspondientes al rango temporal seleccionado.
+### 📥 2. Descarga de imágenes GOES-19  
+Obtención automática de escenas satelitales B13.
 
 ### 🧭 3. Preprocesamiento geoespacial  
+<<<<<<< HEAD
 - Recorte al dominio geográfico de estudio  
 - Reproyección de coordenadas  
 - Conversión de formatos  
 - Selección de la banda IR (B13)
+=======
+- Recorte del dominio de estudio  
+- Reproyección  
+- Selección de variable (temperatura de brillo)
+>>>>>>> def67a1 (Actualizo README y aplico limpieza total del proyecto)
 
-### 🔍 4. Análisis temporal de la nube convectiva  
-Evaluación de la evolución del sistema: desplazamiento, intensificación, expansión y cambios térmicos.
+### 🔍 4. Análisis temporal  
+Evaluación del desarrollo convectivo.
 
-### ✈️ 5. Integración con la trayectoria del vuelo  
-Superposición de los tramos **ida**, **siembra**, **regreso** y **pausa** sobre el campo satelital.
+### ✈️ 5. Integración de trayectorias  
+Superposición de tracks georreferenciados.
 
-### 🎨 6. Visualización y generación de figuras  
-Creación de mapas antes–durante–después, secuencias temporales y composiciones espaciales.
+### 🎨 6. Visualización  
+Mapas, composiciones temporales y productos gráficos.
 
-### 📝 7. Documentación del caso  
-Interpretación de los resultados y elaboración de productos gráficos utilizados en reportes operativos.
-
----
+### 📝 7. Documentación  
+Elaboración de notas técnicas y figuras de interpretación.
 
 ---
 
 ## 📦 Organización del código (`src/`)
 
-Además del notebook principal, el proyecto cuenta con una pequeña librería interna en la carpeta `src/`, que separa la lógica en tres componentes:
+- `download_goes.py` → descarga robusta de archivos  
+- `preprocess_goes.py` → apertura, selección y recorte  
+- `plot_goes.py` → mapas y trayectorias
 
-- `download_goes.py`  
-  Funciones para la **descarga de archivos** (por ejemplo escenas GOES-19) a partir de URLs:
-  - manejo de carpetas de salida,
-  - verificación de archivos existentes,
-  - descarga robusta con `requests`.
+Estos módulos permiten mantener notebooks limpios y reutilizar funciones.
 
-- `preprocess_goes.py`  
-  Herramientas de **preprocesamiento**:
-  - apertura de escenas con `xarray`,
-  - selección de la variable principal (por ejemplo temperatura de brillo),
-  - recorte a un dominio geográfico definido (lat/lon),
-  - función de flujo rápido `prepare_scene` para abrir + seleccionar + recortar.
+---
 
-- `plot_goes.py`  
-  Funciones de **visualización en mapas** usando `matplotlib` y `cartopy`:
-  - ploteo del campo satelital (Banda 13 u otra),
-  - configuración básica de mapa (líneas de costa, grilla),
-  - posibilidad de sobreponer la **trayectoria de vuelo**,
-  - guardado de figuras listas para informes.
+## 🧪 Ejemplo de uso desde notebook
 
-Esta organización permite reutilizar el mismo código en distintos notebooks y casos de estudio, manteniendo el análisis más limpio y modular.
+```python
+from src.preprocess_goes import prepare_scene
+from src.plot_goes import plot_goes_scene
 
+da_sub = prepare_scene(
+    path="data/processed/GOES19_20250921_1940.nc",
+    var_name="CMI",
+    lat_bounds=(-5, 2),
+    lon_bounds=(-82, -74),
+    lat_name="lat",
+    lon_name="lon",
+)
+
+plot_goes_scene(
+    da_sub,
+    extent=(-82, -74, -5, 2),
+    title="Escena GOES-19 recortada con trayectoria",
+    flight_track=([-80, -79.5, -79], [-1, -0.5, 0]),
+    save_path="figures/ejemplo_scene_con_track.png",
+    show=False,
+)
+```
 
