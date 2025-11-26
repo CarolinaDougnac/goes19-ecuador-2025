@@ -1,6 +1,6 @@
-# Análisis GOES-19 para campañas de estimulación de nubes en Ecuador (2025)
+# Análisis Satelital realizado para un evento convectivo dentro del dominio de estudio (2025)
 
-Este repositorio reúne el código, notebooks y ejemplos de productos gráficos utilizados para el **monitoreo y la evaluación de campañas de estimulación de nubes (cloud seeding)** en Ecuador durante 2025, a partir de imágenes satelitales **GOES-19 (banda 13)**.
+Este repositorio reúne el código, notebooks y ejemplos de productos gráficos utilizados para el **monitoreo y la evaluación de campañas de estimulación de nubes (cloud seeding)** durante 2025, a partir de imágenes satelitales **GOES-19 (banda 13)**.
 
 El objetivo principal es mostrar mi forma de trabajo integrando:
 - análisis meteorológico operativo,
@@ -36,7 +36,7 @@ El objetivo principal es mostrar mi forma de trabajo integrando:
 
 ## 📊 Ejemplo de análisis GOES-19: Evolución convectiva durante el vuelo N° 51
 
-A continuación se presenta un ejemplo detallado del análisis satelital realizado para el **Vuelo N° 51** en Ecuador. Se muestra la evolución de la nube convectiva objetivo en tres momentos clave del proceso de siembra: **antes**, **durante** y **después** del vuelo, utilizando imágenes de la banda infrarroja **GOES-19 Band 13 (IR)**.
+A continuación se presenta un ejemplo detallado del análisis satelital realizado para el **Vuelo N° 51** en el dominio geográfico de estudio. Se muestra la evolución de la nube convectiva objetivo en tres momentos clave del proceso de siembra: **antes**, **durante** y **después** del vuelo, utilizando imágenes de la banda infrarroja **GOES-19 Band 13 (IR)**.
 
 Estas figuras representan claramente:
 
@@ -96,7 +96,7 @@ Identificación del vuelo de siembra y determinación de los intervalos **antes�
 Obtención automática de las escenas satelitales correspondientes al rango temporal seleccionado.
 
 ### 🧭 3. Preprocesamiento geoespacial  
-- Recorte al dominio de Ecuador  
+- Recorte al dominio geográfico de estudio  
 - Reproyección de coordenadas  
 - Conversión de formatos  
 - Selección de la banda IR (B13)
